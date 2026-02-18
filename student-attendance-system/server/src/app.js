@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const mongoose = require('mongoose'); // Import mongoose
 require('dotenv').config();
 
 const connectDB = require('./config/db');
@@ -46,6 +47,28 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 // Root Route
 app.get('/', (req, res) => {
     res.json({ success: true, message: 'Welcome to Smart Attendance API' });
+});
+
+// DB Test Route
+app.get('/api/test-db', async (req, res) => {
+    try {
+        const state = mongoose.connection.readyState;
+        const states = { 0: 'disconnected', 1: 'connected', 2: 'connecting', 3: 'disconnecting' };
+
+        // Force a simple query to verify
+        // const collections = await mongoose.connection.db.listCollections().toArray();
+
+        res.json({
+            success: true,
+            message: 'DB Check',
+            connectionState: states[state] || 'unknown',
+            hasMongoUri: !!process.env.MONGODB_URI,
+            hasJwtSecret: !!process.env.JWT_SECRET,
+            envUriPrefix: process.env.MONGODB_URI ? process.env.MONGODB_URI.substring(0, 15) + '...' : 'none'
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
 });
 
 // API Routes
