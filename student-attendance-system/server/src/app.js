@@ -31,11 +31,22 @@ app.use(cors({
 // Enable pre-flight requests for all routes
 app.options('*', cors());
 
+// Request Logger
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Static files for uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+// Root Route
+app.get('/', (req, res) => {
+    res.json({ success: true, message: 'Welcome to Smart Attendance API' });
+});
 
 // API Routes
 app.use('/api/auth', authRoutes);
