@@ -1,0 +1,28 @@
+{
+  "name": "smart-attendance-system",
+  "version": "1.0.0",
+  "description": "Complete Smart Attendance System with Face Recognition",
+  "scripts": {
+    "install:all": "npm install && cd student-attendance-system/server && npm install && cd ../client && npm install",
+    "start:python": "cd logic && python api_server.py",
+    "start:server": "cd student-attendance-system/server && npm run dev",
+    "start:client": "cd student-attendance-system/client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail -n \"PYTHON,SERVER,CLIENT\" -c \"yellow,blue,green\" \"npm run start:python\" \"npm run start:server\" \"npm run start:client\"",
+    "start": "concurrently --kill-others-on-fail -n \"PYTHON,SERVER,CLIENT\" -c \"yellow,blue,green\" \"npm run start:python\" \"cd student-attendance-system/server && npm start\" \"cd student-attendance-system/client && npm run preview\"",
+    "build:client": "cd student-attendance-system/client && npm run build",
+    "setup": "npm run install:all && cd logic && pip install -r requirements.txt"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "attendance",
+    "face-recognition",
+    "student-management"
+  ],
+  "license": "MIT"
+}

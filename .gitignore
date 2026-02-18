@@ -1,0 +1,46 @@
+# Node.js
+node_modules/
+.env
+.env.example
+npm-debug.log
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# React
+*.local
+
+# Misc
+coverage/
+
+# Python (if any in root)
+__pycache__/
+*.pyc
+
+# Ignore uploads (if not needed in repo)
+uploads/
+
+# Ignore build artifacts
+student-attendance-system/client/build/
+student-attendance-system/client/dist/
+student-attendance-system/server/node_modules/
+student-attendance-system/server/dist/
+
+# Ignore Python virtual environments
+venv/
+.env/
+
+# Ignore generated files
+*.bak
+*.tmp
