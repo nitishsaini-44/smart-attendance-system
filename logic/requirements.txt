@@ -1,5 +1,6 @@
 numpy>=1.23
 pandas>=1.5
+opencv-python>=4.8
 opencv-python-headless>=4.8
 onnxruntime>=1.15
 insightface>=0.7
