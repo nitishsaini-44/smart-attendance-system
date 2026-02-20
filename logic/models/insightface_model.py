@@ -10,12 +10,15 @@
 #         app.prepare(ctx_id=-1, det_size=(640, 640))
 #     return app
 
-# models/insightface_model.py
+import os
 from insightface.app import FaceAnalysis
 
-print("🚀 Initializing InsightFace model (startup)...")
+os.environ["INSIGHTFACE_HOME"] = "/app/.insightface"
+
+print("🚀 Loading InsightFace model (ONE TIME)...")
+
 face_app = FaceAnalysis(name="buffalo_l")
-face_app.prepare(ctx_id=-1, det_size=(640, 640))  # CPU only (Railway safe)
+face_app.prepare(ctx_id=-1, det_size=(640, 640), providers=["CPUExecutionProvider"])
 
 def load_model():
     return face_app
