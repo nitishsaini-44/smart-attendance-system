@@ -13,12 +13,17 @@
 import os
 from insightface.app import FaceAnalysis
 
+# Prevent re-download loops on Railway
 os.environ["INSIGHTFACE_HOME"] = "/app/.insightface"
 
-print("🚀 Loading InsightFace model (ONE TIME)...")
+print("🚀 Initializing InsightFace model (startup)...")
 
 face_app = FaceAnalysis(name="buffalo_l")
-face_app.prepare(ctx_id=-1, det_size=(640, 640), providers=["CPUExecutionProvider"])
+face_app.prepare(
+    ctx_id=-1,  # Force CPU (Railway has no GPU)
+    det_size=(640, 640),
+    providers=["CPUExecutionProvider"]
+)
 
 def load_model():
     return face_app
