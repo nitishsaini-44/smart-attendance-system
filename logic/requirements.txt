@@ -1,9 +1,10 @@
-numpy>=1.23
-opencv-python>=4.8
-torch>=2.0
-insightface>=0.7
-onnxruntime>=1.15
-flask>=2.3
-flask-cors>=4.0
-pymongo>=4.0
-python-dotenv>=1.0
+numpy==1.26.4
+opencv-python-headless==4.9.0.80
+torch==2.2.2+cpu
+--extra-index-url https://download.pytorch.org/whl/cpu
+insightface==0.7.3
+onnxruntime==1.17.3
+flask==3.0.3
+flask-cors==4.0.1
+pymongo==4.7.2
+python-dotenv==1.0.1
